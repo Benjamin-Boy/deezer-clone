@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active {
+  border-left: 4px solid #ef5466;
+  color: #ef5466;
+}

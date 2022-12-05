@@ -1,9 +1,9 @@
 import Navbar from "../components/Navbar";
 import Player from "../components/Player";
 import TopBar from "../components/TopBar";
-import MusicIndex from "../components/MusicIndex";
+import PodcastsIndex from "../components/Podcasts";
 
-const Home = () => {
+const Podcasts = () => {
   return (
     <div className="flex flex-col overflow-x-hidden">
       <div className="flex">
@@ -11,7 +11,7 @@ const Home = () => {
 
         <div className="ml-[14rem] w-screen">
           <TopBar />
-          <MusicIndex />
+          <PodcastsIndex />
         </div>
       </div>
       <Player />
@@ -19,4 +19,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Podcasts;
