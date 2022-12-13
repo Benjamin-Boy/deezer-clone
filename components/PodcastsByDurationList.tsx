@@ -1,15 +1,20 @@
+import ListGenreItem from "./ListGenreItem";
+import ListTitle from "./ListTitle";
+
 const PodcastsByDurationList = () => {
+  const array = [10, 20, 30, 40];
+
   return (
-    <>
-      <h1 className="text-display-2 text-[#fff] font-bold mb-5">
-        Podcasts by duration
-      </h1>
+    <div className="w-full p-6">
+      <ListTitle title="Podcasts by duration" link={false} />
       <div className="flex justify-start gap-7">
-        <div className="flex justify-center items-center gap-2 w-[160px] h-[80px] bg-[#b93232] rounded-md cursor-pointer">
-          <h4 className="text-[#fff] font-bold">10 min</h4>
-        </div>
+        {array.map((item) => {
+          return (
+            <ListGenreItem key={item} type="duration" title={`< ${item} min`} />
+          );
+        })}
       </div>
-    </>
+    </div>
   );
 };
 

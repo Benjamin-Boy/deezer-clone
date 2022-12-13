@@ -7,13 +7,15 @@ import PodcastsByNetworkList from "./PodcastsByNetworkList";
 
 const PodcastsIndex = () => {
   return (
-    <div className="mb-[5rem] mt-[50px] flex flex-col gap-4 bg-[#121216] p-5">
-      <PopularPodcastsList />
-      <PodcastsCategoriesList />
-      <LatestPodcastsList />
-      <PodcastsForYouList />
-      <PodcastsByDurationList />
-      <PodcastsByNetworkList />
+    <div className="w-full bg-[#121216]">
+      <div className="mb-[5rem] mt-[50px] flex flex-col gap-4 min-w-[1000px] max-w-[90%] m-auto">
+        <PopularPodcastsList />
+        <PodcastsCategoriesList />
+        <LatestPodcastsList />
+        <PodcastsForYouList />
+        <PodcastsByDurationList />
+        <PodcastsByNetworkList />
+      </div>
     </div>
   );
 };

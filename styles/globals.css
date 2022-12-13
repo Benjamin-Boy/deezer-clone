@@ -2,7 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-.active {
+html {
+  background-color: #121216;
+}
+
+.navbar-active {
   border-left: 4px solid #ef5466;
   color: #ef5466;
+}
+
+.inactive {
+  color: #3e3e47;
 }

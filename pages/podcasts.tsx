@@ -1,21 +1,11 @@
-import Navbar from "../components/Navbar";
-import Player from "../components/Player";
-import TopBar from "../components/TopBar";
-import PodcastsIndex from "../components/Podcasts";
+import PodcastsIndex from "../components/PodcastsIndex";
+import MainLayout from "../components/MainLayout";
 
 const Podcasts = () => {
   return (
-    <div className="flex flex-col overflow-x-hidden">
-      <div className="flex">
-        <Navbar />
-
-        <div className="ml-[14rem] w-screen">
-          <TopBar />
-          <PodcastsIndex />
-        </div>
-      </div>
-      <Player />
-    </div>
+    <MainLayout>
+      <PodcastsIndex />
+    </MainLayout>
   );
 };
 

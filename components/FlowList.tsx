@@ -1,31 +1,31 @@
 import Image from "next/image";
 
+import ListTitle from "./ListTitle";
+
 import { IoMdPlay } from "react-icons/io";
 
 import defaultArtist from "../public/default-avatar.jpg";
 
 const FlowList = () => {
-  const flow = [1, 2, 3, 4, 5, 6, 7];
+  const flow = [1, 2, 3, 4, 5, 6, 7, 8];
 
   return (
-    <div className="w-full">
-      <h2 className="text-display-2 text-[#fff] font-bold">
-        Flow: play how you feel
-      </h2>
-      <h4 className="text-display-4 text-[#a2a2ad] mb-5">
-        An infinite, personalized mix of the music you love and new discoveries
-      </h4>
-      <div className="flex justify-start gap-4">
+    <div className="w-full p-6">
+      <ListTitle
+        title="Flow: play how you feel"
+        subtitle="An infinite, personalized mix of the music you love and new discoveries"
+        link={false}
+      />
+      <div className="flex justify-center gap-8">
         {flow.map((item) => {
           return (
             <div
               key={item}
-              className="flex flex-col items-center gap-2 w-[90px] md:w-[155px]"
+              className="flex flex-col items-center gap-2 min-w-[75px]"
             >
               <div className="relative group">
                 <Image
                   src={defaultArtist}
-                  // width={90}
                   placeholder="blur"
                   alt="Artist image"
                   className="rounded-full"

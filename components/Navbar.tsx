@@ -14,23 +14,25 @@ import { BsMusicNoteBeamed } from "react-icons/bs";
 const Navbar = () => {
   const router = useRouter();
 
-  const id = 18007111;
+  const id = 0;
 
   return (
     <div className="fixed top-0 z-20 min-w-[14rem] h-screen bg-[#191922] border-r border-[#42424c]">
-      <Image
-        className="pl-5 pt-3"
-        src={logoLight}
-        width={140}
-        placeholder="blur"
-        alt="Deezer logo"
-      />
+      <Link href="/">
+        <Image
+          className="pl-5 pt-3"
+          src={logoLight}
+          width={140}
+          placeholder="blur"
+          alt="Deezer logo"
+        />
+      </Link>
       <div className="mt-[16rem]">
         <ul className="flex flex-col gap-5">
           <Link href="/">
             <li
               className={`${
-                router.pathname == "/" ? "active" : "border-transparent"
+                router.pathname == "/" ? "navbar-active" : "border-transparent"
               } border-l-4 border-transparent pl-5 cursor-pointer hover:text-[#EF5466] text-white transition duration-200 ease-in-out`}
             >
               <div className="flex items-center gap-3">
@@ -44,7 +46,9 @@ const Navbar = () => {
           <Link href="/podcasts">
             <li
               className={`${
-                router.pathname == "/podcasts" ? "active" : "border-transparent"
+                router.pathname == "/podcasts"
+                  ? "navbar-active"
+                  : "border-transparent"
               } border-l-4 border-transparent pl-5 cursor-pointer hover:text-[#EF5466] text-white transition duration-200 ease-in-out`}
             >
               <div className="flex items-center gap-3 text-display-2">
@@ -58,7 +62,9 @@ const Navbar = () => {
           <Link href="/radio">
             <li
               className={`${
-                router.pathname == "/radio" ? "active" : "border-transparent"
+                router.pathname == "/radio"
+                  ? "navbar-active"
+                  : "border-transparent"
               } border-l-4 border-transparent pl-5 cursor-pointer hover:text-[#EF5466] text-white transition duration-200 ease-in-out`}
             >
               <div className="flex items-center gap-3 text-display-2">
@@ -73,7 +79,7 @@ const Navbar = () => {
             <li
               className={`${
                 router.pathname == "/channels/explore"
-                  ? "active"
+                  ? "navbar-active"
                   : "border-transparent"
               } border-l-4 border-transparent pl-5 cursor-pointer hover:text-[#EF5466] text-white transition duration-200 ease-in-out`}
             >
@@ -89,8 +95,8 @@ const Navbar = () => {
           <Link
             href={`/profile/${id}`}
             className={`${
-              router.pathname == `/profile/${id}`
-                ? "active"
+              router.pathname == `/profile/[id]`
+                ? "navbar-active"
                 : "border-transparent"
             } border-l-4 border-transparent pl-5 cursor-pointer hover:text-[#EF5466] text-white transition duration-200 ease-in-out`}
           >
@@ -103,22 +109,62 @@ const Navbar = () => {
               </div>
             </li>
           </Link>
-          <ul className="mt-4 pl-14 flex flex-col gap-5">
-            <li className="text-display-5 text-[#a2a2ad] cursor-pointer hover:text-[#EF5466] transition duration-200 ease-in-out">
-              Favourite tracks
-            </li>
-            <li className="text-display-5 text-[#a2a2ad] cursor-pointer hover:text-[#EF5466] transition duration-200 ease-in-out">
-              Playlists
-            </li>
-            <li className="text-display-5 text-[#a2a2ad] cursor-pointer hover:text-[#EF5466] transition duration-200 ease-in-out">
-              Albums
-            </li>
-            <li className="text-display-5 text-[#a2a2ad] cursor-pointer hover:text-[#EF5466] transition duration-200 ease-in-out">
-              Artists
-            </li>
-            <li className="text-display-5 text-[#a2a2ad] cursor-pointer hover:text-[#EF5466] transition duration-200 ease-in-out">
-              Podcasts
-            </li>
+          <ul className="mt-2 flex flex-col gap-3">
+            <Link href={`/profile/${id}/loved`}>
+              <li
+                className={`cursor-pointer pl-14 py-1 border-l-4 text-display-5 text-[#a2a2ad] hover:text-[#ef5466] transition duration-200 ${
+                  router.pathname == `/profile/[id]/loved`
+                    ? "text-[#ef5466] border-[#ef5466]"
+                    : "border-transparent"
+                }`}
+              >
+                Favourite tracks
+              </li>
+            </Link>
+            <Link href={`/profile/${id}/playlists`}>
+              <li
+                className={`cursor-pointer pl-14 py-1 border-l-4 text-display-5 text-[#a2a2ad] hover:text-[#ef5466] transition duration-200 ${
+                  router.pathname == `/profile/[id]/playlists`
+                    ? "text-[#ef5466] border-[#ef5466]"
+                    : "border-transparent"
+                }`}
+              >
+                Playlists
+              </li>
+            </Link>
+            <Link href={`/profile/${id}/albums`}>
+              <li
+                className={`cursor-pointer pl-14 py-1 border-l-4 text-display-5 text-[#a2a2ad] hover:text-[#ef5466] transition duration-200 ${
+                  router.pathname == `/profile/[id]/albums`
+                    ? "text-[#ef5466] border-[#ef5466]"
+                    : "border-transparent"
+                }`}
+              >
+                Albums
+              </li>
+            </Link>
+            <Link href={`/profile/${id}/artists`}>
+              <li
+                className={`cursor-pointer pl-14 py-1 border-l-4 text-display-5 text-[#a2a2ad] hover:text-[#ef5466] transition duration-200 ${
+                  router.pathname == `/profile/[id]/artists`
+                    ? "text-[#ef5466] border-[#ef5466]"
+                    : "border-transparent"
+                }`}
+              >
+                Artists
+              </li>
+            </Link>
+            <Link href={`/profile/${id}/podcasts`}>
+              <li
+                className={`cursor-pointer pl-14 py-1 border-l-4 text-display-5 text-[#a2a2ad] hover:text-[#ef5466] transition duration-200 ${
+                  router.pathname == `/profile/[id]/podcasts`
+                    ? "text-[#ef5466] border-[#ef5466]"
+                    : "border-transparent"
+                }`}
+              >
+                Podcasts
+              </li>
+            </Link>
           </ul>
         </ul>
       </div>

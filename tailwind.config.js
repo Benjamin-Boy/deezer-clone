@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
-        "display-1": ["1.6rem"],
+        "display-1": ["1.8rem"],
         "display-2": ["1.4rem"],
         "display-3": ["1.1rem"],
         "display-4": ["0.9rem"],
@@ -20,13 +20,14 @@ module.exports = {
           "0%, 100%": { transform: "translateX(0)" },
           "50%": { transform: "translate(8px)" },
         },
-        // wiggle: {
-        //   "0%, 100%": { transform: "rotate(-3deg)" },
-        //   "50%": { transform: "rotate(3deg)" },
-        // },
+        tooltipAppear: {
+          "0%": { transform: "translateY(6px) translateX(-50%)" },
+          "100%": { transform: "translateY(0) translateX(-50%)" },
+        },
       },
       animation: {
         wiggle: "wiggle 300ms ease-in-out",
+        tooltipAppear: "tooltipAppear 100ms ease-in-out",
       },
     },
   },
