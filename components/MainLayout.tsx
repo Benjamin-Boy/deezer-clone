@@ -1,15 +1,18 @@
 import Navbar from "../components/Navbar";
 import Player from "../components/Player";
 import TopBar from "../components/TopBar";
-// import RadiosIndex from "../components/RadiosIndex";
-import React from "react";
+import Queue from "../components/Queue";
+
+import { useState } from "react";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div className="flex flex-col overflow-x-hidden">
-      <div className="flex">
-        <Navbar />
+  const [queueOpen, setQueueOpen] = useState(true);
 
+  return (
+    <div className="relative flex flex-col overflow-x-hidden">
+      <div className="flex">
+        {queueOpen && <Queue />}
+        <Navbar />
         <div className="ml-[14rem] w-screen">
           <TopBar />
           {children}
