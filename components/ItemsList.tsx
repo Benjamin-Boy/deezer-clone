@@ -15,6 +15,7 @@ const ItemsList = ({
   titlePath,
   itemPath,
   pageScroll,
+  data,
 }: Props) => {
   const array = [1, 2, 3, 4, 5];
 

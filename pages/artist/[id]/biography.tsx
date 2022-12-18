@@ -1,6 +1,5 @@
-import ArtistIndexLayout from "../../../components/ArtistIndexLayout";
 import MainLayout from "../../../components/MainLayout";
-import ArtistBiography from "../../../components/ArtistBiography";
+import { ArtistIndexLayout, ArtistBiography } from "../../../components/artist";
 
 const Artist = () => {
   return (

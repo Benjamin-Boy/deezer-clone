@@ -1,19 +1,37 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import ListTitle from "./ListTitle";
+import ListTitle from "./../ListTitle";
 
 import { IoMdPlay } from "react-icons/io";
 import { VscHeart } from "react-icons/vsc";
 import { BsThreeDots } from "react-icons/bs";
 import { FaMicrophoneAlt } from "react-icons/fa";
 
-import defaultArtwork from "../public/default-artwork.png";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { useEffect } from "react";
+import { getAlbums } from "../../features/albumSlice";
+
+import defaultArtwork from "../../public/default-artwork.png";
+
+import { Album } from "../../typings.d";
 
 const ArtistLatestRelease = () => {
-  const id = 0;
-  const albumId = 0;
-  const albumTrackArray = [1, 2, 3, 4, 5, 6];
+  const artistId = "clbnp526q0m7v0bvv35hppd1w";
+  const albumId = "clbnpn2jh0mpi0bwb69s9sh6z";
+
+  const { albums } = useAppSelector((state) => state.albums);
+  const dispatch = useAppDispatch();
+
+  const album = albums.find((album: Album) => album.id === albumId);
+
+  useEffect(() => {
+    dispatch(getAlbums());
+  }, []);
+
+  if (!album) {
+    return <h1>LOADING...</h1>;
+  }
 
   return (
     <div className="w-[75%]">
@@ -23,8 +41,9 @@ const ArtistLatestRelease = () => {
           <div className="relative w-[200px] group">
             <Link href={`/album/${albumId}`}>
               <Image
-                src={defaultArtwork}
-                placeholder="blur"
+                src={album ? album.image.url : defaultArtwork}
+                width={200}
+                height={200}
                 alt="Artist image"
                 className="w-full group-hover:brightness-90"
               />
@@ -45,21 +64,28 @@ const ArtistLatestRelease = () => {
         </div>
         <div className="flex flex-col gap-4 grow pl-5">
           <div>
-            <h2 className="text-[#fff] text-display-2">Album Name</h2>
-            <h3 className="text-[#a2a2a2] text-display-4">22/12/2022</h3>
+            <Link href={`/album/${albumId}`}>
+              <h2 className="text-[#fff] text-display-2 hover:underline">
+                {album.name}
+              </h2>
+            </Link>
+            <h3 className="text-[#a2a2a2] text-display-4">
+              {new Date(album.releaseDate).toLocaleDateString("en-GB")}
+            </h3>
           </div>
           <div>
-            {albumTrackArray.map((item) => {
+            {album.songs.slice(0, 6).map(({ id, name }) => {
               return (
                 <div
-                  key={item}
+                  key={id}
                   className="flex justify-between items-center hover:bg-[#16161d] p-2 group"
                 >
                   <div className="flex items-center gap-4 ">
                     <div className="relative w-[40px] cursor-pointer">
                       <Image
-                        src={defaultArtwork}
-                        placeholder="blur"
+                        src={album ? album.image.url : defaultArtwork}
+                        width={40}
+                        height={40}
                         alt="Album image"
                         className="border border-[#42424c]"
                       />
@@ -68,7 +94,7 @@ const ArtistLatestRelease = () => {
                       </div>
                     </div>
                     <div className="text-[#fff] cursor-pointer hover:underline">
-                      1. Track Name
+                      1. {name}
                     </div>
                   </div>
                   <div className="flex items-center gap-2 text-display-3 text-[#fff]">
@@ -87,9 +113,11 @@ const ArtistLatestRelease = () => {
             })}
           </div>
           <div>
-            <button className="text-[#fff] text-display-4 font-bold px-4 py-1 rounded-full border border-[#42424c] cursor-pointer hover:bg-[#34343b] transition duration-200">
-              ACCESS ALBUM (11 TRACKS)
-            </button>
+            <Link href={`/album/${albumId}`}>
+              <button className="text-[#fff] text-display-4 font-bold px-4 py-1 rounded-full border border-[#42424c] cursor-pointer hover:bg-[#34343b] transition duration-200">
+                ACCESS ALBUM ({album.songs.length} TRACKS)
+              </button>
+            </Link>
           </div>
         </div>
       </div>

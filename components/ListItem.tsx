@@ -8,29 +8,33 @@ import { IoIosRadio } from "react-icons/io";
 
 import defaultArtwork from "../public/default-artwork.png";
 
-import { Props } from "../typings.d";
+import { ListItem } from "../typings.d";
+import Artists from "../pages/profile/[id]/artists";
 
 const ListItem = ({
   type,
   name,
-  artistName,
+  artists,
   trackNb,
   fansNb,
   date,
-  itemPath,
+  albumPath,
+  artistPath,
   explicit,
-}: Props) => {
+  image,
+}: ListItem) => {
   const id = 0;
 
   return (
     <div className="flex flex-col gap-1 min-w-[165px] xl:w-[25%] max-w-[265px]">
       {/* Image if type is album, artist or playlist */}
       {type !== "radio" && type !== "radioPage" && (
-        <Link href={`${itemPath}`} className="relative group">
+        <Link href={`${albumPath}`} className="relative group">
           <Image
-            src={defaultArtwork}
-            placeholder="blur"
-            alt="Artist image"
+            src={image ? image.url : defaultArtwork}
+            width={165}
+            height={165}
+            alt="Album image"
             className={`${
               type === "artist" ? "rounded-full" : "rounded-md"
             } w-full group-hover:brightness-90`}
@@ -68,9 +72,10 @@ const ListItem = ({
       {type === "radio" && (
         <div className="relative bg-[#23232d] rounded-[1.2rem] p-5 xl:rounded-[2rem] hover:brightness-90 transition duration-300">
           <Image
-            src={defaultArtwork}
-            placeholder="blur"
-            alt="Artist image"
+            src={image ? image.url : defaultArtwork}
+            width={165}
+            height={165}
+            alt="Radio image"
             className="w-full"
           />
           <div className="absolute bottom-4 left-4 bg-[#fff] text-display-3 p-3 rounded-full cursor-pointer hover:brightness-[0.98] transition duration-250">
@@ -82,8 +87,9 @@ const ListItem = ({
       {type === "radioPage" && (
         <div className="relative bg-[#23232d] rounded-[1.2rem] p-5 xl:rounded-[2rem] hover:brightness-90 transition duration-300 max-w-[265px]">
           <Image
-            src={defaultArtwork}
-            placeholder="blur"
+            src={image ? image.url : defaultArtwork}
+            width={165}
+            height={165}
             alt="Artist image"
             className="w-full"
           />
@@ -133,16 +139,25 @@ const ListItem = ({
         {/* Infos if type is album */}
         {type === "album" && (
           <div>
-            <Link href={`/album/${id}`}>
+            <Link href={`${albumPath}`}>
               <h3 className="text-[#fff] text-display-3 cursor-pointer hover:underline">
                 {name}
               </h3>
             </Link>
-            <Link href={`/artist/${id}`}>
-              <h5 className="text-[#a2a2ad] text-display-4">
-                by <span className="hover:underline">{artistName}</span>
-              </h5>
-            </Link>
+
+            <h5 className="text-[#a2a2ad] text-display-4">
+              by{" "}
+              <span className="hover:underline">
+                {artists?.map((artist, index) => {
+                  return (
+                    <Link key={index} href={`${artistPath}`}>
+                      {artist.name}
+                    </Link>
+                  );
+                })}
+              </span>
+            </h5>
+
             {date && (
               <h6 className="text-[#a2a2ad] text-display-5">
                 Released on {date}

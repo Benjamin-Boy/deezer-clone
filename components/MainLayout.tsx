@@ -6,7 +6,7 @@ import Queue from "../components/Queue";
 import { useState } from "react";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
-  const [queueOpen, setQueueOpen] = useState(true);
+  const [queueOpen, setQueueOpen] = useState(false);
 
   return (
     <div className="relative flex flex-col overflow-x-hidden">

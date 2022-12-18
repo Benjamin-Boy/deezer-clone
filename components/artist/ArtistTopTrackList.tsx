@@ -1,32 +1,64 @@
 import Image from "next/image";
-import ListTitle from "./ListTitle";
+import { useRouter } from "next/router";
+
+import ListTitle from "../ListTitle";
 
 import { IoMdPlay } from "react-icons/io";
 import { VscHeart } from "react-icons/vsc";
 import { BsThreeDots } from "react-icons/bs";
 import { FaMicrophoneAlt } from "react-icons/fa";
 
-import defaultArtwork from "../public/default-artwork.png";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { useEffect } from "react";
+import { getSongs } from "../../features/songSlice";
+
+import { Song } from "../../typings.d";
+
+import defaultArtwork from "../../public/default-artwork.png";
 
 const ArtistTopTrackList = () => {
-  const id = 0;
-  const topTrackArray = [1, 2, 3, 4];
+  const router = useRouter();
+  const { id } = router.query;
+
+  const { songs } = useAppSelector((state) => state.songs);
+  const dispatch = useAppDispatch();
+
+  const songArr: Song[] = [];
+
+  songs.filter((song) => {
+    song.artists.forEach((artist) => {
+      if (artist.id === id) {
+        songArr.push(song);
+      }
+    });
+  });
+
+  useEffect(() => {
+    dispatch(getSongs());
+  }, []);
+
+  if (!songs) {
+    return <h1>LOADING...</h1>;
+  }
 
   return (
     <div className="w-[75%]">
-      <ListTitle title="Top tracks" titlePath={`/artist/${id}/top_tracks`} />
+      <ListTitle title="Top tracks" titlePath={`/artist/${id}/top_track`} />
       <div className="p-6 bg-[#23232d] rounded-md">
-        {topTrackArray.map((item) => {
+        {songArr.slice(0, 4).map(({ id, name, trackNumber, albums }) => {
           return (
             <div
-              key={item}
+              key={id}
               className="flex justify-between items-center hover:bg-[#16161d] p-2 group"
             >
               <div className="flex items-center gap-4 ">
                 <div className="relative w-[40px] cursor-pointer">
                   <Image
-                    src={defaultArtwork}
-                    placeholder="blur"
+                    src={
+                      songs.length > 0 ? albums[0].image.url : defaultArtwork
+                    }
+                    width={40}
+                    height={40}
                     alt="Album image"
                     className="border border-[#42424c]"
                   />
@@ -35,7 +67,7 @@ const ArtistTopTrackList = () => {
                   </div>
                 </div>
                 <div className="text-[#fff] cursor-pointer hover:underline">
-                  1. Track Name
+                  {trackNumber}. {name}
                 </div>
               </div>
               <div className="flex items-center gap-2 text-display-3 text-[#fff]">

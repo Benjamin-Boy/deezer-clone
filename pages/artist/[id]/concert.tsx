@@ -1,6 +1,5 @@
-import ArtistIndexLayout from "../../../components/ArtistIndexLayout";
 import MainLayout from "../../../components/MainLayout";
-import ArtistConcerts from "../../../components/ArtistConcerts";
+import { ArtistIndexLayout, ArtistConcerts } from "../../../components/artist";
 
 const Concerts = () => {
   return (

@@ -4,9 +4,9 @@ import { FiChevronRight } from "react-icons/fi";
 import { BsChevronLeft } from "react-icons/bs";
 import { BsChevronRight } from "react-icons/bs";
 
-import { Props } from "../typings.d";
+import { ListTitle } from "../typings.d";
 
-const ListTitle = ({ title, subtitle, titlePath, pageScroll }: Props) => {
+const ListTitle = ({ title, subtitle, titlePath, pageScroll }: ListTitle) => {
   return (
     <>
       {titlePath ? (
@@ -16,7 +16,7 @@ const ListTitle = ({ title, subtitle, titlePath, pageScroll }: Props) => {
             className="cursor-pointer text-display-2 text-white hover:text-[#EF5466] transition duration-200 ease-in-out group"
           >
             <div className="flex ">
-              <h1 className=" font-bold leading-none">{title}</h1>
+              <h1 className="text-display-2 font-bold leading-none">{title}</h1>
               <div className="group-hover:animate-wiggle mt-[2px]">
                 <FiChevronRight />
               </div>
@@ -33,7 +33,7 @@ const ListTitle = ({ title, subtitle, titlePath, pageScroll }: Props) => {
       ) : (
         <div className="flex justify-between items-center mb-5">
           <div className="flex flex-col">
-            <h1 className="text-display-2 text-[#fff] font-bold leading-none">
+            <h1 className="text-display-1 text-[#fff] font-bold leading-none">
               {title}
             </h1>
             <h4 className="text-display-4 text-[#a2a2ad] ">{subtitle}</h4>

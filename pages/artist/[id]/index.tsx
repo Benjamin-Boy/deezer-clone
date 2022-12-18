@@ -1,11 +1,13 @@
-import ArtistIndexLayout from "../../../components/ArtistIndexLayout";
 import MainLayout from "../../../components/MainLayout";
-import ArtistTopTrackList from "../../../components/ArtistTopTrackList";
-import ArtistPlaylistList from "../../../components/ArtistPlaylistList";
-import ArtistLatestRelease from "../../../components/ArtistLatestRelease";
-import ArtistSmiliarArtist from "../../../components/ArtistSmiliarArtist";
-import ArtistAlbums from "../../../components/ArtistAlbums";
-import ArtistOnTour from "../../../components/ArtistOnTour";
+import {
+  ArtistIndexLayout,
+  ArtistTopTrackList,
+  ArtistAlbums,
+  ArtistLatestRelease,
+  ArtistPlaylistList,
+  ArtistOnTour,
+  ArtistSmiliarArtist,
+} from "../../../components/artist";
 
 const Artist = () => {
   return (
