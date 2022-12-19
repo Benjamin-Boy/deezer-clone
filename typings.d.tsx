@@ -63,3 +63,7 @@ export interface Artist {
   isOnTour: boolean;
   biography: string;
 }
+
+export interface Genre {
+  name: string;
+}
